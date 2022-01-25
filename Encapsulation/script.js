@@ -3,7 +3,15 @@ class DivCreator {
   // colors = ["red", "blue", "black"];
 
   constructor(color) {
-    this.colors = ["red", "blue", "black"];
+    this.colors = [
+      "green",
+      "blue",
+      "black",
+      "orange",
+      "pink",
+      "purple",
+      "yellow",
+    ];
     this.color = color || this.#setColor();
     this.min = 10;
     this.max = 100;
@@ -16,8 +24,8 @@ class DivCreator {
     document.body.append(newDiv);
     newDiv.style.background = this.color;
     newDiv.style.height = `${this.height}px`;
-    // console.log(this.height);
     newDiv.style.width = `${this.width}px`;
+    // newDiv.style.borderRadius = "50px";
 
     // must create some div with this.height this.wight this.color
   }
@@ -31,8 +39,41 @@ class DivCreator {
   }
 }
 
-let button = document.getElementById("button");
+let button = document.getElementById("rectangle");
 button.onclick = () => {
-  let square = new DivCreator();
+  let rectangle = new DivCreator();
+  rectangle.generateDiv();
+};
+
+// child Class
+
+class Square extends DivCreator {
+  constructor() {
+    super();
+    this.width = this.height;
+  }
+}
+let button2 = document.getElementById("square");
+button2.onclick = () => {
+  let square = new Square();
   square.generateDiv();
+};
+//child circle
+class Circle extends DivCreator {
+  constructor() {
+    super();
+  }
+  generateCircle() {
+    let circles = document.createElement("div");
+    document.body.append(circles);
+    circles.style.background = this.color;
+    circles.style.height = `${this.height}px`;
+    circles.style.width = `${this.width}px`;
+    circles.style.borderRadius = "50px";
+  }
+}
+let button3 = document.getElementById("circle");
+button3.onclick = () => {
+  let circle = new Circle();
+  circle.generateCircle();
 };
