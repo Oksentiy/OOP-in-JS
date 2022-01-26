@@ -1,7 +1,6 @@
 "use strict";
-class DivCreator {
-  // colors = ["red", "blue", "black"];
 
+class DivCreator {
   constructor(color) {
     this.colors = [
       "green",
@@ -17,17 +16,14 @@ class DivCreator {
     this.max = 100;
     this.height = this.#setSize();
     this.width = this.#setSize();
+    this.newDiv = document.createElement("div");
   }
 
   generateDiv() {
-    const newDiv = document.createElement("div");
-    document.body.append(newDiv);
-    newDiv.style.background = this.color;
-    newDiv.style.height = `${this.height}px`;
-    newDiv.style.width = `${this.width}px`;
-    // newDiv.style.borderRadius = "50px";
-
-    // must create some div with this.height this.wight this.color
+    document.body.append(this.newDiv);
+    this.newDiv.style.background = this.color;
+    this.newDiv.style.height = `${this.height}px`;
+    this.newDiv.style.width = `${this.width}px`;
   }
 
   #setSize() {
@@ -39,13 +35,7 @@ class DivCreator {
   }
 }
 
-let button = document.getElementById("rectangle");
-button.onclick = () => {
-  let rectangle = new DivCreator();
-  rectangle.generateDiv();
-};
-
-// child Class
+// child Class Square
 
 class Square extends DivCreator {
   constructor() {
@@ -58,22 +48,19 @@ button2.onclick = () => {
   let square = new Square();
   square.generateDiv();
 };
-//child circle
+
+//child Class Circle
+
 class Circle extends DivCreator {
-  constructor() {
-    super();
-  }
-  generateCircle() {
-    let circles = document.createElement("div");
-    document.body.append(circles);
-    circles.style.background = this.color;
-    circles.style.height = `${this.height}px`;
-    circles.style.width = `${this.width}px`;
-    circles.style.borderRadius = "50px";
+  generateDiv() {
+    super.generateDiv();
+
+    this.newDiv.style.borderRadius = "50px";
   }
 }
+
 let button3 = document.getElementById("circle");
 button3.onclick = () => {
   let circle = new Circle();
-  circle.generateCircle();
+  circle.generateDiv();
 };
