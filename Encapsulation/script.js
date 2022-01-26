@@ -1,29 +1,20 @@
 "use strict";
-
 class DivCreator {
   constructor(color) {
-    this.colors = [
-      "green",
-      "blue",
-      "black",
-      "orange",
-      "pink",
-      "purple",
-      "yellow",
-    ];
+    this.colors = ["red", "blue", "black"];
     this.color = color || this.#setColor();
     this.min = 10;
     this.max = 100;
     this.height = this.#setSize();
     this.width = this.#setSize();
-    this.newDiv = document.createElement("div");
   }
 
   generateDiv() {
-    document.body.append(this.newDiv);
-    this.newDiv.style.background = this.color;
-    this.newDiv.style.height = `${this.height}px`;
-    this.newDiv.style.width = `${this.width}px`;
+    const newDiv = document.createElement("div");
+    document.body.append(newDiv);
+    newDiv.style.background = this.color;
+    newDiv.style.height = `${this.height}px`;
+    newDiv.style.width = `${this.width}px`;
   }
 
   #setSize() {
@@ -35,32 +26,8 @@ class DivCreator {
   }
 }
 
-// child Class Square
-
-class Square extends DivCreator {
-  constructor() {
-    super();
-    this.width = this.height;
-  }
-}
-let button2 = document.getElementById("square");
-button2.onclick = () => {
-  let square = new Square();
+let button = document.getElementById("button");
+button.onclick = () => {
+  let square = new DivCreator();
   square.generateDiv();
-};
-
-//child Class Circle
-
-class Circle extends DivCreator {
-  generateDiv() {
-    super.generateDiv();
-
-    this.newDiv.style.borderRadius = "50px";
-  }
-}
-
-let button3 = document.getElementById("circle");
-button3.onclick = () => {
-  let circle = new Circle();
-  circle.generateDiv();
 };
